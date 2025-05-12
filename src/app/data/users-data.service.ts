@@ -8,7 +8,7 @@ export class UsersDataService {
   users: any[] = [];
   constructor() { 
   this.users = [
-    { id: 1, fullName: 'שרה רבקה', phone: '050-1111111', password: '123456789', lessonId: 1, price: 100, isPaid: true, role: 'teacher' },
+    { id: 1, fullName: 'שרה רבקה', phone: '050-1111111', password: '123456789', lessonId: 1, price: 100, isPaid: true, role: 'secretary' },
     { id: 2, fullName: 'מרים יעל', phone: '050-2222222', password: '234567891', lessonId: 2, price: 120, isPaid: false, role: 'secretary' },
     { id: 3, fullName: 'רבקה דבורה', phone: '050-3333333', password: '345678912', lessonId: 3, price: 80, isPaid: true, role: 'teacher' },
     { id: 4, fullName: 'חנה מיכל', phone: '050-4444444', password: '456789123', lessonId: 4, price: 90, isPaid: false, role: 'secretary' },
@@ -30,5 +30,6 @@ get(name:string,password: string) {
     return null;
   }
 }
-
+getAllUsers() {
+  return this.users;}
 }
