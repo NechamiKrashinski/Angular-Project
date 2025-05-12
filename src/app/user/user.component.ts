@@ -1,15 +1,17 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import type { ICellRendererAngularComp } from "ag-grid-angular";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { UsersDataService } from '../data/users-data.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatDialogTitle, MatDialogContent } from '@angular/material/dialog'; 
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
@@ -18,16 +20,26 @@ ModuleRegistry.registerModules([AllCommunityModule]);
   template: `<button (click)="buttonClicked()">Push Me!</button>`,
 })
 export class CustomButtonComponent implements ICellRendererAngularComp {
+  private params!: ICellRendererParams; // הוסף את ה-! כאן
+
   constructor(private dialog: MatDialog) {}
 
-  agInit(params: ICellRendererParams): void {}
-  refresh(params: ICellRendererParams) {
+  agInit(params: ICellRendererParams): void {
+    this.params = params; // שמור את ה-params כדי לגשת לנתוני השורה
+  }
+
+  refresh(params: ICellRendererParams): boolean {
     return true;
   }
 
   buttonClicked() {
+    const rowData = this.params.data; // קבל את הנתונים של השורה הנוכחית
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { name: "aaa", animal: "bbbb" },
+      data: rowData, // שלח את נתוני השורה לדיאלוג
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result:', result);
     });
   }
 }
@@ -35,9 +47,9 @@ export class CustomButtonComponent implements ICellRendererAngularComp {
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [AgGridAngular],
+  imports: [AgGridAngular, CustomButtonComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'], // תיקון: 'styleUrls' ולא 'styleUrl'
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent {
   rowData: any[] = [];
@@ -67,10 +79,10 @@ export class UserComponent {
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
+    MatDialogModule,
+    MatListModule,
+    MatCardModule,
+
   ],
 })
 export class DialogComponent {
