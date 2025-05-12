@@ -1,0 +1,12 @@
+<h1>Welcome to Gym </h1>
+<form [formGroup]="loginForm" name="form">
+  <div>     
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" type="text" placeholder="Enter your name">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input id="password" formControlName="password" type="password" placeholder="Enter your password">
+  </div>
+  <button type="submit" (click)="sendLoginForm()">Login</button>
+</form>
