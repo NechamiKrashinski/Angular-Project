@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>פרטי משתמש</h2>
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <strong>שם מלא:</strong> {{data.fullName}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>טלפון:</strong> {{data.phone}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>סיסמה:</strong> {{data.password}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>מזהה שיעור:</strong> {{data.lessonId}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>מחיר:</strong> {{data.price}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>שולם:</strong> {{data.isPaid ? 'כן' : 'לא'}}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>תפקיד:</strong> {{data.role}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
