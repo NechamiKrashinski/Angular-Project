@@ -8,21 +8,50 @@ export class UsersDataService {
   users: any[] = [];
   constructor() { 
   this.users = [
-    { id: 1, fullName: 'שרה רבקה', phone: '050-1111111', password: '123456789', lessonId: 1, price: 100, isPaid: true, role: 'secretary' },
-    { id: 2, fullName: 'מרים יעל', phone: '050-2222222', password: '234567891', lessonId: 2, price: 120, isPaid: false, role: 'secretary' },
-    { id: 3, fullName: 'רבקה דבורה', phone: '050-3333333', password: '345678912', lessonId: 3, price: 80, isPaid: true, role: 'teacher' },
-    { id: 4, fullName: 'חנה מיכל', phone: '050-4444444', password: '456789123', lessonId: 4, price: 90, isPaid: false, role: 'secretary' },
-    { id: 5, fullName: 'לאה ציפורה', phone: '050-5555555', password: '567891234', lessonId: 5, price: 110, isPaid: true, role: 'teacher' },
-    { id: 6, fullName: 'אסתר חיה', phone: '050-6666666', password: '678912345', lessonId: 6, price: 100, isPaid: false, role: 'secretary' },
-    { id: 7, fullName: 'נחמה פנינה', phone: '050-7777777', password: '789123456', lessonId: 7, price: 85, isPaid: true, role: 'teacher' },
-    { id: 8, fullName: 'דבורה רחל', phone: '050-8888888', password: '891234567', lessonId: 8, price: 95, isPaid: false, role: 'secretary' },
-    { id: 9, fullName: 'בת שבע אילה', phone: '050-9999999', password: '912345678', lessonId: 9, price: 105, isPaid: true, role: 'teacher' },
-    { id: 10, fullName: 'יוכבד שרון', phone: '050-1010101', password: '123456780', lessonId: 10, price: 120, isPaid: false, role: 'secretary' },
+    { username: 'Sara Cohen', password: '123456', role: 'teacher' },
+    { username: 'Miriam Levi', password: '234567', role: 'teacher' },
+    { username: 'Rivka Gold', password: '345678', role: 'teacher' },
+    { username: 'Chaya Friedman', password: '456789', role: 'teacher' },
+    { username: 'Leah Izraeli', password: '567891', role: 'teacher' },
+    { username: 'Ester Bar', password: '678912', role: 'teacher' },
+    { username: 'Nechama Green', password: '789123', role: 'teacher' },
+    { username: 'Devora Shapira', password: '891234', role: 'teacher' },
+    { username: 'Bat Sheva Katz', password: '912345', role: 'teacher' },
+    { username: 'Yocheved Sharon', password: '123450', role: 'teacher' },
+    { username: 'Shulamit Hadass', password: '234560', role: 'teacher' },
+    { username: 'Chaya Ester', password: '345670', role: 'teacher' },
+    { username: 'Rachel Miriam', password: '456780', role: 'teacher' },
+    { username: 'Dina Leah', password: '567890', role: 'teacher' },
+    { username: 'Tzippora Michal', password: '678901', role: 'teacher' },
+    { username: 'Chana Rivka', password: '789012', role: 'teacher' },
+    { username: 'Ester Batya', password: '890123', role: 'teacher' },
+    { username: 'Pnina Ruth', password: '901234', role: 'teacher' },
+    { username: 'Rivka Shira', password: '012345', role: 'teacher' },
+    { username: 'Devora Ayala', password: '123451', role: 'teacher' },
+    { username: 'Shira Hadass', password: '234561', role: 'teacher' },
+    { username: 'Chana Rachel', password: '345671', role: 'teacher' },
+    { username: 'Leah Batsheva', password: '456781', role: 'teacher' },
+    { username: 'Miriam Dina', password: '567891', role: 'teacher' },
+    { username: 'Rachel Ester', password: '678902', role: 'teacher' },
+    { username: 'Devora Chaya', password: '789013', role: 'teacher' },
+    { username: 'Ester Michal', password: '890124', role: 'teacher' },
+    { username: 'Chaya Ayala', password: '901235', role: 'teacher' },
+    { username: 'Shulamit Ruth', password: '012346', role: 'teacher' },
+    { username: 'Sara Cohen', password: '123457', role: 'secretary' },
+    { username: 'Miriam Levi', password: '234568', role: 'secretary' },
+    { username: 'Rivka Gold', password: '345679', role: 'secretary' },
+    { username: 'Chaya Friedman', password: '456780', role: 'secretary' },
+    { username: 'Leah Izraeli', password: '567892', role: 'secretary' },
+    { username: 'Ester Bar', password: '678913', role: 'secretary' },
+    { username: 'Nechama Green', password: '789124', role: 'secretary' },
+    { username: 'Devora Shapira', password: '891235', role: 'secretary' },
+    { username: 'Bat Sheva Katz', password: '912346', role: 'secretary' },
+    { username: 'Yocheved Sharon', password: '123451', role: 'secretary' }
   ];
 
 }
 get(name:string,password: string) {
-  const user = this.users.find(user => user.fullName === name && user.password === password);
+  const user = this.users.find(user => user.username === name && user.password === password);
   if (user) {
     sessionStorage.setItem('role', user.role);
     return user.role;
